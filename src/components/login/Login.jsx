@@ -19,7 +19,7 @@ class Login extends Component {
         // 存储 token 令牌
         window.sessionStorage.setItem('token', res.data.token)
         // 登录成功跳转到首页
-        this.$router.push('/home')
+        this.props.history.push('/home')
       }
     })
   }

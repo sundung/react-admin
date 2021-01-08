@@ -1,0 +1,21 @@
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #373d41;
+  .title {
+    font-size: 28px;
+    background-color: #373d41;
+    color: #fff;
+  }
+  .btn {
+    margin-right: 15px;
+  }
+}
+
+.home-container {
+  height: 100vh;
+  .ant-layout-sider {
+    background-color: #333744;
+  }
+}
