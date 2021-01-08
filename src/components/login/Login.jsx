@@ -1,16 +1,25 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button } from 'antd'
+import { Form, Icon, Input, Button, Message } from 'antd'
 // 导入样式
 import './Login.scss'
 class Login extends Component {
   // 提交表单事件
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         // 验证通过发起网络请求
+        const { data: res } = await this.$http.post('login', values)
+        if (res.meta.status !== 200) {
+          return Message.error('登录失败')
+        }
+        // 成功提示
+        Message.success('登录成功')
 
-        console.log('Received values of form: ', values)
+        // 存储 token 令牌
+        window.sessionStorage.setItem('token', res.data.token)
+        // 登录成功跳转到首页
+        this.$router.push('/home')
       }
     })
   }
