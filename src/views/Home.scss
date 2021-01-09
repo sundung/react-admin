@@ -14,8 +14,21 @@
 }
 
 .home-container {
+  // 二级子菜单背景色
+  // .ant-menu-inline.ant-menu-sub {
+  //   // background-color: greenyellow;
+  // }
   height: 100vh;
-  .ant-layout-sider {
+  // 一级子菜单背景色
+  .ant-menu {
     background-color: #333744;
+    color: #fff;
+    //二级子菜单 文字颜色
+    .ant-menu-item > a {
+      color: green;
+    }
+    .ant-menu-item .ant-menu-item-active {
+      color: red;
+    }
   }
 }
