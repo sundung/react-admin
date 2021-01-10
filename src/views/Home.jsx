@@ -32,7 +32,6 @@ export default class Home extends Component {
     this.setState({
       menuList: res.data,
     })
-    console.log(this.state.menuList)
   }
 
   toggle = () => {
