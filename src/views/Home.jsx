@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 
 import { Layout, Menu, Icon, Button, Message } from 'antd'
-import { Link } from 'react-router-dom'
+
+import { Route, Switch, Link, Redirect } from 'react-router-dom'
+
+// 导入欢迎页面
+import Welcome from '../components/Welcome'
+// 导入 用户列表页面
+import User from '../components/user/User'
+// 导入权限列表页面
+import Roles from '../components/role/Roles'
 import './Home.scss'
 
 const { SubMenu } = Menu
@@ -46,16 +54,22 @@ export default class Home extends Component {
   mountedMenuList = () => {
     return this.state.menuList.map((item) => {
       return (
-        <SubMenu title={item.authName} key={item.id}>
+        <SubMenu
+          key={item.id}
+          title={
+            <span>
+              <Icon type="bars" />
+              <span>{item.authName}</span>
+            </span>
+          }
+        >
           {item.children.map((item) => {
             return (
-              <Menu.Item
-                title={item.authName}
-                key={item.id}
-                style={{ color: '#fff' }}
-              >
-                <Link to={item.path}>{item.authName}</Link>
-                {item.path}
+              <Menu.Item key={item.id}>
+                <Link to={item.path}>
+                  <Icon type="user" />
+                  <span>{item.authName}</span>
+                </Link>
               </Menu.Item>
             )
           })}
@@ -85,7 +99,20 @@ export default class Home extends Component {
               </Menu>
             </Sider>
             <Layout style={{ padding: '0 24px 24px' }}>
-              <Content></Content>
+              <Content>
+                <Switch>
+                  <Route path="/home/welcome" component={Welcome}></Route>
+                  <Route path="/home/users" component={User}></Route>
+                  <Route path="/home/roles" component={Roles}></Route>
+                  <Route path="/home/rights" component={User}></Route>
+                  <Route path="/home/goods" component={User}></Route>
+                  <Route path="/home/params" component={User}></Route>
+                  <Route path="/home/categories" component={User}></Route>
+                  <Route path="/home/orders" component={User}></Route>
+                  <Route path="/home/reports" component={User}></Route>
+                  <Redirect to="/home/welcome" />
+                </Switch>
+              </Content>
             </Layout>
           </Layout>
         </Layout>
